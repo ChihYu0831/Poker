@@ -36,10 +36,10 @@
             this.btnDealCard = new System.Windows.Forms.Button();
             this.grpBet = new System.Windows.Forms.GroupBox();
             this.btnBet = new System.Windows.Forms.Button();
-            this.lblBetAmountResult = new System.Windows.Forms.Label();
-            this.lblTotalAmountResult = new System.Windows.Forms.Label();
             this.lblBetAmount = new System.Windows.Forms.Label();
             this.lblTotalAmount = new System.Windows.Forms.Label();
+            this.txtTotalMoney = new System.Windows.Forms.TextBox();
+            this.txtBetMoney = new System.Windows.Forms.TextBox();
             this.grpButton.SuspendLayout();
             this.grpBet.SuspendLayout();
             this.SuspendLayout();
@@ -112,9 +112,9 @@
             // 
             // grpBet
             // 
+            this.grpBet.Controls.Add(this.txtBetMoney);
+            this.grpBet.Controls.Add(this.txtTotalMoney);
             this.grpBet.Controls.Add(this.btnBet);
-            this.grpBet.Controls.Add(this.lblBetAmountResult);
-            this.grpBet.Controls.Add(this.lblTotalAmountResult);
             this.grpBet.Controls.Add(this.lblBetAmount);
             this.grpBet.Controls.Add(this.lblTotalAmount);
             this.grpBet.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -127,36 +127,17 @@
             // 
             // btnBet
             // 
-            this.btnBet.Location = new System.Drawing.Point(409, 46);
+            this.btnBet.Location = new System.Drawing.Point(413, 44);
             this.btnBet.Name = "btnBet";
             this.btnBet.Size = new System.Drawing.Size(60, 37);
             this.btnBet.TabIndex = 4;
             this.btnBet.Text = "押注";
             this.btnBet.UseVisualStyleBackColor = true;
             // 
-            // lblBetAmountResult
-            // 
-            this.lblBetAmountResult.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblBetAmountResult.Location = new System.Drawing.Point(280, 49);
-            this.lblBetAmountResult.Name = "lblBetAmountResult";
-            this.lblBetAmountResult.Size = new System.Drawing.Size(114, 31);
-            this.lblBetAmountResult.TabIndex = 3;
-            this.lblBetAmountResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblTotalAmountResult
-            // 
-            this.lblTotalAmountResult.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblTotalAmountResult.Location = new System.Drawing.Point(80, 49);
-            this.lblTotalAmountResult.Name = "lblTotalAmountResult";
-            this.lblTotalAmountResult.Size = new System.Drawing.Size(114, 31);
-            this.lblTotalAmountResult.TabIndex = 2;
-            this.lblTotalAmountResult.Text = "1000000";
-            this.lblTotalAmountResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // lblBetAmount
             // 
             this.lblBetAmount.AutoSize = true;
-            this.lblBetAmount.Location = new System.Drawing.Point(200, 54);
+            this.lblBetAmount.Location = new System.Drawing.Point(200, 52);
             this.lblBetAmount.Name = "lblBetAmount";
             this.lblBetAmount.Size = new System.Drawing.Size(74, 21);
             this.lblBetAmount.TabIndex = 1;
@@ -170,6 +151,22 @@
             this.lblTotalAmount.Size = new System.Drawing.Size(58, 21);
             this.lblTotalAmount.TabIndex = 0;
             this.lblTotalAmount.Text = "總資金";
+            // 
+            // txtTotalMoney
+            // 
+            this.txtTotalMoney.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTotalMoney.Location = new System.Drawing.Point(80, 49);
+            this.txtTotalMoney.Name = "txtTotalMoney";
+            this.txtTotalMoney.Size = new System.Drawing.Size(114, 29);
+            this.txtTotalMoney.TabIndex = 5;
+            // 
+            // txtBetMoney
+            // 
+            this.txtBetMoney.BackColor = System.Drawing.SystemColors.Window;
+            this.txtBetMoney.Location = new System.Drawing.Point(280, 49);
+            this.txtBetMoney.Name = "txtBetMoney";
+            this.txtBetMoney.Size = new System.Drawing.Size(125, 29);
+            this.txtBetMoney.TabIndex = 6;
             // 
             // frmPoker
             // 
@@ -202,9 +199,9 @@
         private System.Windows.Forms.Button btnCheck;
         private System.Windows.Forms.GroupBox grpBet;
         private System.Windows.Forms.Button btnBet;
-        private System.Windows.Forms.Label lblBetAmountResult;
-        private System.Windows.Forms.Label lblTotalAmountResult;
         private System.Windows.Forms.Label lblBetAmount;
         private System.Windows.Forms.Label lblTotalAmount;
+        private System.Windows.Forms.TextBox txtTotalMoney;
+        private System.Windows.Forms.TextBox txtBetMoney;
     }
 }
