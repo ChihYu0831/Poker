@@ -133,6 +133,7 @@
             this.btnBet.TabIndex = 4;
             this.btnBet.Text = "押注";
             this.btnBet.UseVisualStyleBackColor = true;
+            this.btnBet.Click += new System.EventHandler(this.btnBet_Click);
             // 
             // lblBetAmount
             // 
@@ -159,6 +160,7 @@
             this.txtTotalMoney.Name = "txtTotalMoney";
             this.txtTotalMoney.Size = new System.Drawing.Size(114, 29);
             this.txtTotalMoney.TabIndex = 5;
+            this.txtTotalMoney.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtBetMoney
             // 
@@ -167,6 +169,7 @@
             this.txtBetMoney.Name = "txtBetMoney";
             this.txtBetMoney.Size = new System.Drawing.Size(125, 29);
             this.txtBetMoney.TabIndex = 6;
+            this.txtBetMoney.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // frmPoker
             // 

@@ -28,12 +28,36 @@ namespace Poker
         /// </summary>
         int[] playerPoker = new int[5];
 
+        /// <summary>
+        /// 玩家目前總資金
+        /// </summary>
+        int totalMoney = 1000000;
+
+        /// <summary>
+        /// 玩家本局押注金額
+        /// </summary>
+        int betMoney = 0;
+
+        /// <summary>
+        /// 紀錄玩家本局是否已經完成押注
+        /// </summary>
+        bool hasBet = false;
+
         #endregion
 
         public frmPoker()
         {
             InitializeComponent();
             InitializePoker();
+
+            // 初始化總資金
+            txtTotalMoney.Text = totalMoney.ToString();
+
+            // 一開始還沒有押注，所以不能發牌、換牌、判斷牌型
+            btnDealCard.Enabled = false;
+            btnChangeCard.Enabled = false;
+            btnCheck.Enabled = false;
+
         }
 
 
@@ -148,6 +172,13 @@ namespace Poker
         {
             // 將上一把牌型的結果清空
             this.lblResult.Text = "";
+
+            // 如果還沒押注，不可以發牌
+            if (!hasBet)
+            {
+                MessageBox.Show("請先押注！", "提醒");
+                return;
+            }
 
             // 將牌桌上的圖片換成 back 圖片，表示牌面朝下
             for (int i = 0; i < pic.Length; i++)
@@ -325,51 +356,104 @@ namespace Poker
             bool isOnePair = (pointCount[0] == 2 && pointCount[1] == 1);
 
             string result = "";
+            int odds = 0;
+
+            // 根據牌型設定賠率
             if (isRoyalisFlush)
             {
-                result = $"{colorList[0]} 同花大順";
+                result = $"{colorList[0]} 皇家同花順";
+                odds = 250;
             }
             else if (isStraightFlush)
             {
                 result = $"{colorList[0]} 同花順";
-            }
-            else if (isStraight)
-            {
-                result = "順子";
+                odds = 50;
             }
             else if (isFourOfAKind)
             {
-                result = $"{pointList[0]} 鐵支";
+                result = $"{pointList[0]} 四條";
+                odds = 25;
             }
             else if (isFullHouse)
             {
-                result = $"{pointList[0]}三張{pointList[1]}兩張 葫蘆";
+                result = $"{pointList[0]}三張 {pointList[1]}兩張 葫蘆";
+                odds = 9;
             }
             else if (isFlush)
             {
                 result = $"{colorList[0]} 同花";
+                odds = 6;
+            }
+            else if (isStraight)
+            {
+                result = "順子";
+                odds = 4;
             }
             else if (isThreeOfAKind)
             {
                 result = $"{pointList[0]} 三條";
+                odds = 3;
             }
             else if (isTwoPair)
             {
-                result = $"{pointList[0]},{pointList[1]} 兩對";
+                result = $"{pointList[0]}、{pointList[1]} 兩對";
+                odds = 2;
             }
             else if (isOnePair)
             {
                 result = $"{pointList[0]} 一對";
+                odds = 1;
             }
             else
             {
                 result = "雜牌";
+                odds = 0;
             }
-            lblResult.Text = result;
+
+            // 計算中獎金額
+            int winMoney = betMoney * odds;
+
+            // 把中獎金額加回總資金
+            totalMoney += winMoney;
+
+            // 更新總資金顯示
+            txtTotalMoney.Text = totalMoney.ToString();
+
+            // 用 MessageBox 顯示結果，不使用 lblResult
+            MessageBox.Show(
+                $"牌型：{result}\n" +
+                $"賠率：{odds}\n" +
+                $"押注金額：{betMoney}\n" +
+                $"中獎金額：{winMoney}\n" +
+                $"目前總資金：{totalMoney}",
+                "本局結果"
+            );
+
+            // 本局結束，重設下注狀態
+            hasBet = false;
+            betMoney = 0;
+
+            // 清空並重新啟用押注輸入
+            txtBetMoney.Text = "";
+            txtBetMoney.Enabled = true;
+            btnBet.Enabled = true;
+
+            // 關閉功能按鈕
             btnChangeCard.Enabled = false;
             btnCheck.Enabled = false;
+            btnDealCard.Enabled = false;
 
-            btnDealCard.Enabled = true;
+            // 如果總資金已經歸零，提醒玩家
+            if (totalMoney <= 0)
+            {
+                MessageBox.Show("你的總資金已經歸零，遊戲結束！", "遊戲結束");
+
+                txtBetMoney.Enabled = false;
+                btnBet.Enabled = false;
+                btnDealCard.Enabled = false;
+                btnChangeCard.Enabled = false;
+                btnCheck.Enabled = false;
+            }
         }
 
         /// <summary>
@@ -433,6 +517,61 @@ namespace Poker
 
         }
 
+
+        /// <summary>
+        /// 當玩家按下押注按鈕時，檢查押注金額是否合法，並從總資金扣除押注金額
+        /// </summary>
+        private void btnBet_Click(object sender, EventArgs e)
+        {
+            // 檢查押注金額是否為整數
+            if (!int.TryParse(txtBetMoney.Text, out betMoney))
+            {
+                MessageBox.Show("請輸入正確的押注金額！", "錯誤");
+                return;
+            }
+
+            // 押注金額不能小於等於 0
+            if (betMoney <= 0)
+            {
+                MessageBox.Show("押注金額必須大於 0！", "錯誤");
+                return;
+            }
+
+            // 押注金額不能超過總資金
+            if (betMoney > totalMoney)
+            {
+                MessageBox.Show("押注金額不能超過總資金！", "錯誤");
+                return;
+            }
+
+            // 扣除押注金額
+            totalMoney -= betMoney;
+
+            // 更新總資金畫面
+            txtTotalMoney.Text = totalMoney.ToString();
+
+            // 設定本局已經押注
+            hasBet = true;
+
+            // 押注成功提示
+            MessageBox.Show(
+                $"押注成功！\n" +
+                $"押注金額：{betMoney}\n" +
+                $"目前總資金：{totalMoney}\n\n" +
+                $"請按「發牌」開始遊戲。",
+                "押注成功"
+            );
+
+            // 押注後才可以發牌
+            btnDealCard.Enabled = true;
+
+            // 同一局不能重複押注
+            btnBet.Enabled = false;
+            txtBetMoney.Enabled = false;
+        }
+
+
         #endregion
+
     }
 }
