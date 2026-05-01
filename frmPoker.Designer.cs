@@ -112,6 +112,7 @@
             // 
             // grpBet
             // 
+            this.grpBet.BackColor = System.Drawing.SystemColors.Control;
             this.grpBet.Controls.Add(this.lblTotalMoney);
             this.grpBet.Controls.Add(this.txtBetMoney);
             this.grpBet.Controls.Add(this.btnBet);
@@ -177,7 +178,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(554, 496);
+            this.ClientSize = new System.Drawing.Size(554, 512);
             this.Controls.Add(this.grpBet);
             this.Controls.Add(this.grpButton);
             this.Controls.Add(this.grpPoker);
