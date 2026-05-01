@@ -35,3 +35,17 @@
 | 兩對 | 2 |
 | 一對 | 1 |
 | 雜牌 | 0 |
+
+---
+
+<img width="697" height="684" alt="image" src="https://github.com/user-attachments/assets/bf87e723-4a9d-49d4-814f-9eaeebdc4de7" />
+
+<img width="699" height="684" alt="image" src="https://github.com/user-attachments/assets/ce8fda04-6542-4ba1-856f-23c6274bbcf9" />
+
+<img width="697" height="684" alt="image" src="https://github.com/user-attachments/assets/433f9ff2-d9c8-4da6-9a11-9f4b709a0758" />
+
+<img width="695" height="685" alt="image" src="https://github.com/user-attachments/assets/80e7e67c-a5a8-4cd3-a971-d63e1d08058e" />
+
+
+
+
