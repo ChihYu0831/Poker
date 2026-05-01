@@ -51,7 +51,7 @@ namespace Poker
             InitializePoker();
 
             // 初始化總資金
-            txtTotalMoney.Text = totalMoney.ToString();
+            lblTotalMoney.Text = totalMoney.ToString();
 
             // 一開始還沒有押注，所以不能發牌、換牌、判斷牌型
             btnDealCard.Enabled = false;
@@ -170,9 +170,6 @@ namespace Poker
         /// <param name="e"></param>
         private async void btnDealCard_Click(object sender, EventArgs e)
         {
-            // 將上一把牌型的結果清空
-            this.lblResult.Text = "";
-
             // 如果還沒押注，不可以發牌
             if (!hasBet)
             {
@@ -417,7 +414,7 @@ namespace Poker
             totalMoney += winMoney;
 
             // 更新總資金顯示
-            txtTotalMoney.Text = totalMoney.ToString();
+            lblTotalMoney.Text = totalMoney.ToString();
 
             // 牌型顯示在原本的 lblResult
             lblResult.Text = result;
@@ -430,6 +427,9 @@ namespace Poker
                 $"目前總資金：{totalMoney}",
                 "本局結果"
             );
+
+            // 按下 MessageBox 的「確定」之後，清空 lblResult
+            lblResult.Text = "";
 
             // 本局結束，重設下注狀態
             hasBet = false;
@@ -498,7 +498,7 @@ namespace Poker
             totalMoney -= betMoney;
 
             // 更新總資金畫面
-            txtTotalMoney.Text = totalMoney.ToString();
+            lblTotalMoney.Text = totalMoney.ToString();
 
             // 設定本局已經押注
             hasBet = true;
