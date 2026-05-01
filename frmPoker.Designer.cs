@@ -184,7 +184,6 @@
             this.Name = "frmPoker";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "五張撲克牌";
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmPoker_KeyPress);
             this.grpButton.ResumeLayout(false);
             this.grpBet.ResumeLayout(false);
             this.grpBet.PerformLayout();

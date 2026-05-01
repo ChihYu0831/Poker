@@ -419,9 +419,11 @@ namespace Poker
             // 更新總資金顯示
             txtTotalMoney.Text = totalMoney.ToString();
 
-            // 用 MessageBox 顯示結果，不使用 lblResult
+            // 牌型顯示在原本的 lblResult
+            lblResult.Text = result;
+
+            // 其他下注結果用 MessageBox 顯示
             MessageBox.Show(
-                $"牌型：{result}\n" +
                 $"賠率：{odds}\n" +
                 $"押注金額：{betMoney}\n" +
                 $"中獎金額：{winMoney}\n" +
@@ -461,62 +463,10 @@ namespace Poker
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void frmPoker_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (this.btnDealCard.Enabled == false)
-            {
-                //MessageBox.Show($"你按下了 {e.KeyChar} 建");
-                switch(e.KeyChar)
-                {
-                    case 'q': // 同花大順
-                        playerPoker[0] = 51;
-                        playerPoker[1] = 47;
-                        playerPoker[2] = 43;
-                        playerPoker[3] = 39;
-                        playerPoker[4] = 3;
-                        break;
-                    case 'w': // 同花順
-                        playerPoker[0] = 37;
-                        playerPoker[1] = 33;
-                        playerPoker[2] = 29;
-                        playerPoker[3] = 25;
-                        playerPoker[4] = 21;
-                        break;
-                    case 'e': // 同花
-                        playerPoker[0] = 50;
-                        playerPoker[1] = 38;
-                        playerPoker[2] = 34;
-                        playerPoker[3] = 22;
-                        playerPoker[4] = 18;
-                        break;
-                    case 'r': // 鐵支
-                        playerPoker[0] = 48;
-                        playerPoker[1] = 39;
-                        playerPoker[2] = 38;
-                        playerPoker[3] = 37;
-                        playerPoker[4] = 36;
-                        break;
-                    case 't': // 葫蘆
-                        playerPoker[0] = 30;
-                        playerPoker[1] = 29;
-                        playerPoker[2] = 6;
-                        playerPoker[3] = 5;
-                        playerPoker[4] = 4;
-                        break;
-                    case 'y': // 三條
-                        playerPoker[0] = 48;
-                        playerPoker[1] = 39;
-                        playerPoker[2] = 15;
-                        playerPoker[3] = 14;
-                        playerPoker[4] = 13;
-                        break;
-                }
+        //private void frmPoker_KeyPress(object sender, KeyPressEventArgs e)
+        //{
 
-                this.ShowCards();
-            }
-
-        }
-
+        //}
 
         /// <summary>
         /// 當玩家按下押注按鈕時，檢查押注金額是否合法，並從總資金扣除押注金額
